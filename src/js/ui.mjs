@@ -28,6 +28,7 @@ export async function renderTemplates() {
 }
 
 export function renderMedia(parentElement, medias) {
+  let type;
     let mediasHTML = ``;
     
     const favorites = getLocalStorage() || [];
@@ -38,13 +39,37 @@ export function renderMedia(parentElement, medias) {
           star = "★";
         }
       })
-        mediasHTML += `
+      if(media.media_type) {
+          mediasHTML += `
         <div id="medias">
           <button id="favorite" data-id="${media.id}" data-type=${media.media_type}>${star}</button>
           <a href="details.html?id=${media.id}&type=${media.media_type}">
             <img src="https://image.tmdb.org/t/p/w300${media.poster_path}" alt="${media.title} Poster" />
           </a>
         </div>`
+      } else {
+        if (media.number_of_episodes) {
+          type = "tv"
+           mediasHTML += `
+        <div id="medias">
+          <button id="favorite" data-id="${media.id}" data-type=${media.media_type}>${star}</button>
+          <a href="details.html?id=${media.id}&type=${type}">
+            <img src="https://image.tmdb.org/t/p/w300${media.poster_path}" alt="${media.title} Poster" />
+          </a>
+        </div>`
+        } else {
+          type = "movie"
+           mediasHTML += `
+        <div id="medias">
+          <button id="favorite" data-id="${media.id}" data-type=${media.media_type}>${star}</button>
+          <a href="details.html?id=${media.id}&type=${type}">
+            <img src="https://image.tmdb.org/t/p/w300${media.poster_path}" alt="${media.title} Poster" />
+          </a>
+        </div>`
+        }
+      }
+      console.log(media)
+        
     });
     parentElement.innerHTML = mediasHTML;
 }
