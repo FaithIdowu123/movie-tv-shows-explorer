@@ -1,8 +1,5 @@
 import { getLocalStorage } from "./storage.mjs";
 
-
-const TMDB_URL = import.meta.env.VITE_TMDB_URL;
-
 export async function loadTemplate(path) {
     const res = await fetch(path);
     const template = await res.text();
@@ -36,13 +33,11 @@ export function renderMedia(parentElement, medias) {
     const favorites = getLocalStorage() || [];
     medias.forEach(media => {
       let star = "☆";
-      let i = 0;
       favorites.forEach(fav =>{
         if (media.id == fav[0]) {
           star = "★";
         }
       })
-      console.log(media)
         mediasHTML += `
         <div id="medias">
           <button id="favorite" data-id="${media.id}" data-type=${media.media_type}>${star}</button>
@@ -70,14 +65,11 @@ export function renderDetails(parentElement, media){
     genres.push(media.genres[i].name);
   }
 
-  console.log(media)
-
   let minutes = media.runtime;
   let hours = 0;
   while (minutes > 60){
     hours += 1;
     minutes -= 60;
-    console.log(minutes)
   }
 
   const date = new Date(media.release_date)
