@@ -29,52 +29,41 @@ export async function renderTemplates() {
 
 export function renderMedia(parentElement, medias) {
   let type;
-    let mediasHTML = ``;
-    
-    const favorites = getLocalStorage() || [];
-    medias.forEach(media => {
-      let star = "☆";
-      favorites.forEach(fav =>{
-        if (media.id == fav[0]) {
-          star = "★";
-        }
-      })
-      if(media.media_type) {
-          mediasHTML += `
-        <div id="medias">
-          <button id="favorite" data-id="${media.id}" data-type=${media.media_type}>${star}</button>
-          <a href="details.html?id=${media.id}&type=${media.media_type}">
-            <img src="https://image.tmdb.org/t/p/w300${media.poster_path}" alt="${media.title} Poster" />
-          </a>
-        </div>`
-      } else {
-        if (media.number_of_episodes) {
-          type = "tv"
-           mediasHTML += `
-        <div id="medias">
-          <button id="favorite" data-id="${media.id}" data-type=${media.media_type}>${star}</button>
-          <a href="details.html?id=${media.id}&type=${type}">
-            <img src="https://image.tmdb.org/t/p/w300${media.poster_path}" alt="${media.title} Poster" />
-          </a>
-        </div>`
-        } else {
-          type = "movie"
-           mediasHTML += `
-        <div id="medias">
-          <button id="favorite" data-id="${media.id}" data-type=${media.media_type}>${star}</button>
-          <a href="details.html?id=${media.id}&type=${type}">
-            <img src="https://image.tmdb.org/t/p/w300${media.poster_path}" alt="${media.title} Poster" />
-          </a>
-        </div>`
-        }
+  let mediasHTML = ``;
+  
+  const favorites = getLocalStorage() || [];
+  medias.forEach(media => {
+    let star = "☆";
+    favorites.forEach(fav =>{
+      if (media.id == fav[0]) {
+        star = "★";
       }
-      console.log(media)
-        
-    });
-    parentElement.innerHTML = mediasHTML;
+    })
+      if (media.number_of_episodes) {
+        type = "tv"
+          mediasHTML += `
+      <div id="medias">
+        <button id="favorite" data-id="${media.id}" data-type=${type}>${star}</button>
+        <a href="details.html?id=${media.id}&type=${type}">
+          <img src="https://image.tmdb.org/t/p/w300${media.poster_path}" alt="${media.title} Poster" />
+        </a>
+      </div>`
+      } else {
+        type = "movie"
+          mediasHTML += `
+      <div id="medias">
+        <button id="favorite" data-id="${media.id}" data-type=${type}>${star}</button>
+        <a href="details.html?id=${media.id}&type=${type}">
+          <img src="https://image.tmdb.org/t/p/w300${media.poster_path}" alt="${media.title} Poster" />
+        </a>
+      </div>`
+      }   
+  });
+  parentElement.innerHTML = mediasHTML;
 }
 
 export function renderDetails(parentElement, media){
+  let type;
   let detailsHtml = ``;
 
   let star = "☆";
@@ -97,13 +86,19 @@ export function renderDetails(parentElement, media){
     minutes -= 60;
   }
 
+  if (media.number_of_episodes) {
+        type = "tv";
+  } else {
+    type = "movie";
+  }
+
   const date = new Date(media.release_date)
-   document.querySelector("title").textContent = `${media.title} (${date.getFullYear()})`
+  document.querySelector("title").textContent = `${media.title} (${date.getFullYear()})`
   detailsHtml += `
     <div id="movie-details">
       <img src="https://image.tmdb.org/t/p/w300${media.poster_path}" alt="${media.title} Poster" />
       <div>
-        <h1>${media.title} (${date.getFullYear()})<button id="favorite" data-id="${media.id}" data-type=${media.media_type}>${star}</button></h1>
+        <h1>${media.title} (${date.getFullYear()})<button id="favorite" data-id="${media.id}" data-type=${type}>${star}</button></h1>
         <p>${date.getDay()}/${date.getMonth() + 1}/${date.getFullYear()} • ${genres.join(", ")} • ${hours}h ${minutes}m</p>
         <h2>Overview</h2>
         <span>${media.tagline}</span>
