@@ -2,18 +2,18 @@ import { defineConfig } from "vite";
 import path from "path";
 
 export default defineConfig({
-  root: "src/",
+  root: "src/",           // The root folder of your project
   server: {
-    port: 5173,
-    open: true,
+    port: 5173,           // Dev server port
+    open: true,           // Open browser automatically
   },
   build: {
-    outDir: "dist",
-    sourcemap: true,
+    outDir: "dist",       // Output folder after build
+    sourcemap: true,      // Generate sourcemaps for debugging
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"), // correct way to alias src folder
+      "@": path.resolve(__dirname, "./src"), // Alias '@' → src
     },
   },
 });
