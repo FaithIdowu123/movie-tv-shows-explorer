@@ -83,7 +83,7 @@ export function renderDetails(parentElement, media){
   if (media.number_of_episodes) {
         type = "tv";
         date = new Date(media.first_air_date);
-        duration = `S${media.number_of_seasons}`;
+        duration = `${media.number_of_seasons} Seasons`;
         title = media.name;
   } else if (!media.number_of_episodes){
     type = "movie";
