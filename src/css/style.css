@@ -31,6 +31,7 @@ h5,
 h6 {
   font-family: "Montserrat", sans-serif;
   font-weight: 500; /* bold */
+  color: var(--accent-color1);
 }
 
 a {
@@ -194,6 +195,17 @@ button:focus-visible {
   justify-content: center;
   div {
     width: 800px;
+    h1 {
+      padding: 0;
+      margin: 0;
+      margin-bottom: -30px;
+    }
+
+    h2 {
+      padding: 0;
+      margin: 0;
+      margin-bottom: -10px;
+    }
   }
 
   button {
@@ -205,6 +217,10 @@ button:focus-visible {
     color: yellow;
     font-size: 2rem;
   }
+}
+
+#movie-details p:first-of-type {
+  margin-bottom: 5px;
 }
 
 #trailer {
