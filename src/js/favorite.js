@@ -2,6 +2,8 @@ import { renderTemplates, renderMedia } from "./ui.mjs";
 import { getByIdAndType } from "./api.mjs";
 import { getLocalStorage } from "./storage.mjs";
 
+renderTemplates();
+
 let medias = [];
 const favorites = getLocalStorage() || [];
 favorites.forEach((favorite) => {
@@ -12,5 +14,3 @@ favorites.forEach((favorite) => {
     renderMedia(document.querySelector("#content-container"), medias);
   });
 });
-
-renderTemplates();
