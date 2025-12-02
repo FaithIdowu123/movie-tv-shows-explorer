@@ -2,6 +2,7 @@ import { renderTemplates, renderMedia, populateGenreSelect } from "./ui.mjs";
 import { getTrendingMovies, getGenreList, getTrendingTVShows } from "./api.mjs";
 import { favoriteButtonListener } from "./events.mjs";
 
+
 renderTemplates().then(() => {
   getGenreList().then((genres) => {
     populateGenreSelect(genres);

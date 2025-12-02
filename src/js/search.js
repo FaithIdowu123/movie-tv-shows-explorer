@@ -4,8 +4,11 @@ import {
   getGenreList,
   getMediaByGenre,
   getMediaByGenreAndTitle,
+  getTrendingMovies,
+  getTrendingTVShows,
 } from "./api.mjs";
 import { favoriteButtonListener } from "./events.mjs";
+import '../css/style.css';
 
 renderTemplates().then(() => {
   getGenreList().then((genres) => {
@@ -50,5 +53,14 @@ if (query1 && !query2) {
     renderMedia(document.querySelector("#shows-container"), medias);
     favoriteButtonListener();
     console.log(medias);
+  });
+} else {
+  getTrendingMovies().then((movies) => {
+    renderMedia(document.querySelector("#movies-container"), movies);
+  });
+
+  getTrendingTVShows().then((movies) => {
+    renderMedia(document.querySelector("#shows-container"), movies);
+    favoriteButtonListener();
   });
 }

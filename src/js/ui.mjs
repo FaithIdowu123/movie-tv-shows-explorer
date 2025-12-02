@@ -1,5 +1,4 @@
 import { getLocalStorage } from "./storage.mjs";
-import { getGenreList } from "./api.mjs";
 
 
 export async function loadTemplate(path) {
