@@ -6,7 +6,7 @@
   --color: rgba(255, 255, 255, 0.87);
   background-color: #1c1c1c;
   --accent-color1: #e67e22;
-  --accent-color2: #3498db;
+  --accent-color2: #1abc9c;
   --accent-color3: #9b59b6;
 
   font-synthesis: none;
@@ -31,7 +31,7 @@ h5,
 h6 {
   font-family: "Montserrat", sans-serif;
   font-weight: 500; /* bold */
-  color: var(--accent-color1);
+  color: var(--accent-color2);
 }
 
 a {
@@ -53,6 +53,7 @@ h1 {
   font-size: 2em;
   line-height: 1.1;
   padding-left: 10px;
+  color: var(--accent-color1);
 }
 
 h2 {
@@ -126,6 +127,7 @@ button:focus-visible {
     text-decoration: none;
     font-size: x-large;
     margin: auto 0;
+    color: var(--color);
   }
 }
 
@@ -137,11 +139,22 @@ button:focus-visible {
     justify-content: center;
     max-width: 700px;
     margin: 0 auto;
+    gap: 5px;
   }
   input {
     width: 70%;
     max-width: 500px;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background-color: #222;
+    color: #fff;
+  }
+
+  select {
+    width: 90px;
+    font-size: 0.8rem;
     padding: 0.5rem;
     border-radius: 8px;
     border: 1px solid #444;
@@ -150,8 +163,8 @@ button:focus-visible {
   }
 
   button {
-    margin-left: 0.5rem;
-    padding: 0.5rem 1rem;
+    margin-left: 0.1rem;
+    padding: 0.5rem 0.5rem;
     border: 1px solid #444;
   }
 }
@@ -164,10 +177,15 @@ button:focus-visible {
 
   padding-bottom: 20px;
   div {
+    position: relative;
     background-color: #222;
     overflow: hidden;
     border-radius: 8px;
     height: 450px;
+    img {
+      width: 100%;
+      height: auto;
+    }
 
     button {
       font-size: xx-large;
@@ -177,6 +195,7 @@ button:focus-visible {
       background-color: transparent;
       position: absolute;
       color: yellow;
+      right: 0px;
     }
   }
 }
@@ -198,13 +217,17 @@ button:focus-visible {
     h1 {
       padding: 0;
       margin: 0;
-      margin-bottom: -30px;
+      margin-bottom: -20px;
     }
 
     h2 {
       padding: 0;
       margin: 0;
       margin-bottom: -10px;
+    }
+
+    #birthday {
+      padding-top: 5px;
     }
   }
 
@@ -233,14 +256,38 @@ button:focus-visible {
   }
 }
 
+div#cast {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 200px);
+  place-content: center;
+  width: 100%;
+  gap: 3rem;
+  border-radius: 6px;
+  > div {
+    border: 2px solid black;
+    width: 200px;
+    background-color: black;
+    border-radius: 12px;
+    overflow: hidden;
+    div p {
+      padding: 0;
+      padding: 0px 10px;
+    }
+  }
+}
+
 footer {
   background-color: black;
   margin-top: 3rem;
-  padding: 2rem 0;
+  padding: 0.5rem 0;
   border-top: 1px solid #333;
   color: var(--color);
   font-size: 0.9rem;
   text-align: center;
+  p {
+    padding: 0px;
+    margin: 10px 0;
+  }
 }
 
 @media (prefers-color-scheme: light) {

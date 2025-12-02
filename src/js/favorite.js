@@ -1,8 +1,12 @@
-import { renderTemplates, renderMedia } from "./ui.mjs";
-import { getByIdAndType } from "./api.mjs";
+import { renderTemplates, renderMedia, populateGenreSelect } from "./ui.mjs";
+import { getByIdAndType, getGenreList } from "./api.mjs";
 import { getLocalStorage } from "./storage.mjs";
 
-renderTemplates();
+renderTemplates().then(() => {
+  getGenreList().then((genres) => {
+    populateGenreSelect(genres);
+  });
+});
 
 let medias = [];
 const favorites = getLocalStorage() || [];
