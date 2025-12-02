@@ -47,7 +47,6 @@ export function renderMedia(parentElement, medias) {
   if (medias.length != 0) {
     const favorites = getLocalStorage() || [];
     medias.forEach(media => {
-      console.log(media)
       let star = "☆";
       let poster = `<img src="https://image.tmdb.org/t/p/w300${media.poster_path}" alt="${media.title || media.name} Poster" />`;
       favorites.forEach(fav =>{
@@ -62,15 +61,12 @@ export function renderMedia(parentElement, medias) {
           console.log("Date is empty");
         } else {
             date = new Date(media.first_air_date);
-            console.log(date);
         }
-          console.log(date);
       } else if (media.media_type == "movie" || !media.number_of_episodes){
         if (!media.release_date) {
           console.log("Date is empty");
         } else {
           date = new Date(media.release_date);
-          console.log(date);
         }
       
       }
@@ -117,7 +113,6 @@ export function renderDetails(parentElement, media){
   let year;
 
   let detailsHtml = ``;
-  console.log(media)
   let star = "☆";
   const favorites = getLocalStorage() || [];
   favorites.forEach(fav =>{
@@ -138,7 +133,6 @@ export function renderDetails(parentElement, media){
           console.log("Date is empty");
         } else {
             date = new Date(media.first_air_date);
-            console.log(date);
         }
         duration = `${media.number_of_seasons} Seasons`;
         title = media.name;
@@ -156,7 +150,6 @@ export function renderDetails(parentElement, media){
       console.log("Date is empty");
     } else {
       date = new Date(media.release_date);
-      console.log(date);
     }
     
   }
@@ -193,9 +186,7 @@ export function renderDetails(parentElement, media){
 
 export async function renderCast(parentElement, cast) {
   let view = ``;
-  console.log(cast.length)
   if (cast.length != 0) {
-    console.log(cast)
     cast.forEach((member) => {
       let poster = `<img src="https://image.tmdb.org/t/p/w200${member.profile_path}" alt="${member.name || member.original_name} Profile" />`;
       view +=  `<div>
@@ -204,7 +195,7 @@ export async function renderCast(parentElement, cast) {
         </a>
         <div id="member">
           <p>${member.name}</p>
-          <p>Character: ${member.character}</p>
+          <p>Character: ${member.character || "Not provided"}</p>
         </div>
       </div>`;
     })
@@ -243,7 +234,7 @@ export async function renderPerson(parentElement, person) {
         <p>Birthday: ${date}</p>
         <p>Birth place: ${person.place_of_birth}</p>
         
-        <p>Biography: ${person.biography}</p>
+        <p>Biography: ${person.biography || "Not provided"}</p>
       </div>
     </div>
   `;
