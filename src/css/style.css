@@ -269,6 +269,15 @@ div#cast {
     background-color: black;
     border-radius: 12px;
     overflow: hidden;
+
+    a{
+      width: 100%;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    
     div p {
       padding: 0;
       padding: 0px 10px;
