@@ -91,8 +91,7 @@ export function renderMedia(parentElement, medias) {
         <h3>${media.title || media.name} (${year})</h3>
         </a>
         <a href="details.html?id=${media.id}&type=${type}">
-          ${poster}
-          
+          ${poster} 
         </a>
       
       </div>`
@@ -179,6 +178,7 @@ export function renderDetails(parentElement, media){
       </div>
     </div>
     <div id="trailer"></div>
+    <h2>Cast</h2>
     <div id="cast"></div>
   `;
   parentElement.innerHTML = detailsHtml
@@ -208,6 +208,7 @@ export async function renderCast(parentElement, cast) {
 export async function renderPerson(parentElement, person) {
   let detailsHtml = ``;
   let date;
+  let year;
 
   if (!person.birthday) {
     console.log("Date is empty");
@@ -232,7 +233,7 @@ export async function renderPerson(parentElement, person) {
         <span>Department: ${person.known_for_department}</span>
         <h2 id="info">Info</h2>
         <p>Birthday: ${date}</p>
-        <p>Birth place: ${person.place_of_birth}</p>
+        <p>Birth place: ${person.place_of_birth || "Not provided"}</p>
         
         <p>Biography: ${person.biography || "Not provided"}</p>
       </div>
