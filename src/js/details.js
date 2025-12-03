@@ -13,7 +13,7 @@ import {
   getGenreList,
 } from "./api.mjs";
 import { favoriteButtonListener } from "./events.mjs";
-import '../css/style.css';
+import "../css/style.css";
 
 renderTemplates().then(() => {
   getGenreList().then((genres) => {

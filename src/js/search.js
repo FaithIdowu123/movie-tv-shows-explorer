@@ -8,7 +8,7 @@ import {
   getTrendingTVShows,
 } from "./api.mjs";
 import { favoriteButtonListener } from "./events.mjs";
-import '../css/style.css';
+import "../css/style.css";
 
 renderTemplates().then(() => {
   getGenreList().then((genres) => {
@@ -40,7 +40,7 @@ if (query1 && !query2) {
     favoriteButtonListener();
   });
 } else if (query1 && query2) {
-  getMediaByGenreAndTitle("movie", query1,query2).then((medias) => {
+  getMediaByGenreAndTitle("movie", query1, query2).then((medias) => {
     renderMedia(document.querySelector("#movies-container"), medias);
   });
 
