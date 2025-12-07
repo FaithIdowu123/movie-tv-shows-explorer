@@ -65,7 +65,7 @@ a {
 }
 
 a:hover {
-  color: var(--accent-color3);
+  color: var(--accent-color2);
 }
 
 #app {
@@ -137,7 +137,7 @@ button:focus-visible {
 }
 
 #main-header a:hover {
-  color: var(--accent-color3);
+  color: var(--accent-color2);
 }
 
 /* Search container */
