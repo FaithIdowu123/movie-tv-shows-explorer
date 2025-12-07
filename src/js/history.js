@@ -23,9 +23,7 @@ renderTemplates().then(() => {
 
 let medias = [];
 const media_history = getLocalStorage("#recent") || [];
-console.log(media_history);
 if (media_history.length != 0) {
-  console.log("vkkbfv");
   media_history.forEach((history) => {
     const type = history[1];
     const id = history[0];
@@ -39,9 +37,8 @@ if (media_history.length != 0) {
     });
   });
 } else {
-  document.querySelector("#content-container").innerHTML =
-    `<p>No history is available</p>`;
   loading();
+  document.querySelector("#content-container").innerHTML = `<p>No history is available</p> `
   fadeIn();
 }
 
@@ -54,9 +51,10 @@ if (actor_history.length != 0) {
       actors.push(person);
       renderActors(document.querySelector("#cast"), actors);
       castCardListener();
-      fadeIn();
     });
   });
 } else {
-  document.querySelector("#cast").textContent = "No history is available";
+  loading();
+  document.querySelector("#cast").innerHTML = `<p>No history is available</p> `
+  fadeIn();
 }
