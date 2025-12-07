@@ -24,5 +24,3 @@ favorites.forEach((favorite) => {
     fadeIn();
   });
 });
-
- 
