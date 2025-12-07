@@ -23,26 +23,40 @@ renderTemplates().then(() => {
 
 let medias = [];
 const media_history = getLocalStorage("#recent") || [];
-media_history.forEach((history) => {
-  const type = history[1];
-  const id = history[0];
-  getByIdAndType(type, id).then((media) => {
-    loading();
-    medias.push(media);
-    renderMedia(document.querySelector("#content-container"), medias);
-    favoriteButtonListener();
-    mediaCardListener();
-    fadeIn();
+console.log(media_history);
+if (media_history.length != 0) {
+  console.log("vkkbfv");
+  media_history.forEach((history) => {
+    const type = history[1];
+    const id = history[0];
+    getByIdAndType(type, id).then((media) => {
+      loading();
+      medias.push(media);
+      renderMedia(document.querySelector("#content-container"), medias);
+      favoriteButtonListener();
+      mediaCardListener();
+      fadeIn();
+    });
   });
-});
+} else {
+  document.querySelector("#content-container").innerHTML =
+    `<p>No history is available</p>`;
+  loading();
+  fadeIn();
+}
 
 let actors = [];
 const actor_history = getLocalStorage("#cast") || [];
-actor_history.forEach((history) => {
-  const id = history;
-  getPersonDetails(id).then((person) => {
-    actors.push(person);
-    renderActors(document.querySelector("#cast"), actors);
-    castCardListener();
+if (actor_history.length != 0) {
+  actor_history.forEach((history) => {
+    const id = history;
+    getPersonDetails(id).then((person) => {
+      actors.push(person);
+      renderActors(document.querySelector("#cast"), actors);
+      castCardListener();
+      fadeIn();
+    });
   });
-});
+} else {
+  document.querySelector("#cast").textContent = "No history is available";
+}
